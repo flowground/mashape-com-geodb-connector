@@ -1,0 +1,63 @@
+{
+    "type": "object",
+    "properties": {
+        "divisionId": {
+            "required": true,
+            "type": "string"
+        },
+        "minPopulation": {
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+        },
+        "types": {
+            "required": false,
+            "type": "string"
+        },
+        "radius": {
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+        },
+        "distanceUnit": {
+            "required": false,
+            "type": "string",
+            "default": "MI"
+        },
+        "asciiMode": {
+            "required": false,
+            "type": "boolean",
+            "default": false
+        },
+        "languageCode": {
+            "required": false,
+            "type": "string"
+        },
+        "limit": {
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 10
+        },
+        "offset": {
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 0
+        },
+        "sort": {
+            "required": false,
+            "type": "string"
+        },
+        "includeDeleted": {
+            "required": false,
+            "type": "string",
+            "default": "NONE"
+        },
+        "hateoasMode": {
+            "required": false,
+            "type": "boolean",
+            "default": true
+        }
+    }
+}

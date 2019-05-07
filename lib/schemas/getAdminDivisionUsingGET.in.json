@@ -1,0 +1,18 @@
+{
+    "type": "object",
+    "properties": {
+        "divisionId": {
+            "required": true,
+            "type": "string"
+        },
+        "asciiMode": {
+            "required": false,
+            "type": "boolean",
+            "default": false
+        },
+        "languageCode": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

@@ -1,0 +1,22 @@
+{
+    "type": "object",
+    "properties": {
+        "limit": {
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 10
+        },
+        "offset": {
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 0
+        },
+        "hateoasMode": {
+            "required": false,
+            "type": "boolean",
+            "default": true
+        }
+    }
+}

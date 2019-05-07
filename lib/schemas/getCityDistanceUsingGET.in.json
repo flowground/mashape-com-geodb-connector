@@ -1,0 +1,18 @@
+{
+    "type": "object",
+    "properties": {
+        "cityId": {
+            "required": true,
+            "type": "string"
+        },
+        "fromCityId": {
+            "required": true,
+            "type": "string"
+        },
+        "distanceUnit": {
+            "required": false,
+            "type": "string",
+            "default": "MI"
+        }
+    }
+}

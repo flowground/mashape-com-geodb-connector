@@ -1,0 +1,429 @@
+{
+    "title": "GeoDB Cities",
+    "description": "The GeoDB API focuses on getting global city and region data. Easily obtain country, region, and city data for use in your apps! <ul><li>Filter cities by name prefix, country, location, time-zone, and even minimum population.</li><li>Sort cities by name, country code, elevation, and population - or any combination of these.</li> <li>Get all country regions.</li> <li>Get all cities in a given region.</li><li>Display results in multiple languages.</li> <li>RESTful API adheres to industry best-practices, including HATEOAS-style links to facilitate paging results.</li> <li>Backed by cloud-based load-balanced infrastructure for resiliency and performance!</li> <li>Data is periodically refreshed from GeoNames and WikiData.</li></ul><p>Notes:<ul><li>Since the database is periodically updated, this may <strong>very rarely</strong> result in certain cities being marked deleted (e.g., duplicates removed). By default, endpoints returning city data will exclude cities marked deleted. However, in the unlikely event that this occurs while your app is paging through a set of affected results - and you care about the paged results suddenly changing underneath - specify <tt>includeDeleted=SINCE_YESTERDAY</tt> (or <tt>SINCE_LAST_WEEK</tt> if you're really paranoid!).</li></ul><hr/><h3>Useful Resources</h3><ul><li>SDKs<ul><li><a href='https://www.npmjs.com/package/wft-geodb-angular-client'>Angular</a>, <a href='https://github.com/wirefreethought/geodb-sample-angular-app'>Sample App</a></li><li><a href='https://github.com/wirefreethought/geodb-java-client'>Java</a></li><li><a href='https://www.npmjs.com/package/wft-geodb-js-client'>JavaScript</a></li></ul><li><a href='swagger.json'>Swagger Docs</a></li><li><a href='http://creativecommons.org/licenses/by/3.0/'>Usage License</a></i></li></ul>",
+    "docsUrl": "",
+    "url": "https://api.apis.guru/v2/specs/mashape.com/geodb/1.0.0/swagger.json",
+    "envVars": {},
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://wft-geo-db.p.mashape.com/",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "UserSecurity": {
+                "label": "X-Mashape-Key (UserSecurity)",
+                "viewClass": "TextFieldView"
+            }
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "findAdminDivisionsUsingGET": {
+            "main": "./lib/actions/findAdminDivisionsUsingGET.js",
+            "title": "Find administrative divisions",
+            "description": "Find administrative divisions, filtering by optional criteria. If no criteria are set, you will get back all known divisions.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/findAdminDivisionsUsingGET.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getAdminDivisionUsingGET": {
+            "main": "./lib/actions/getAdminDivisionUsingGET.js",
+            "title": "Get administrative division details",
+            "description": "Get the details for a specific administrative division, including location coordinates, population, and elevation above sea-level (if available).",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getAdminDivisionUsingGET.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "findCitiesNearAdminDivisionUsingGET": {
+            "main": "./lib/actions/findCitiesNearAdminDivisionUsingGET.js",
+            "title": "Find cities near division",
+            "description": "Find cities near the given administrative division, filtering by optional criteria. If no criteria are set, you will get back all known cities.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/findCitiesNearAdminDivisionUsingGET.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "findDivisionsNearAdminDivisionUsingGET": {
+            "main": "./lib/actions/findDivisionsNearAdminDivisionUsingGET.js",
+            "title": "Find divisions near division",
+            "description": "Find divisions near the given origin division, filtering by optional criteria. If no criteria are set, you will get back all known divisions.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/findDivisionsNearAdminDivisionUsingGET.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "findCitiesUsingGET": {
+            "main": "./lib/actions/findCitiesUsingGET.js",
+            "title": "Find cities",
+            "description": "Find cities, filtering by optional criteria. If no criteria are set, you will get back all known cities.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/findCitiesUsingGET.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getCityUsingGET": {
+            "main": "./lib/actions/getCityUsingGET.js",
+            "title": "Get city details",
+            "description": "Get the details for a specific city, including location coordinates, population, and elevation above sea-level (if available).",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getCityUsingGET.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getCityDateTimeUsingGET": {
+            "main": "./lib/actions/getCityDateTimeUsingGET.js",
+            "title": "Get city date-time",
+            "description": "Get city date-time",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getCityDateTimeUsingGET.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getCityDistanceUsingGET": {
+            "main": "./lib/actions/getCityDistanceUsingGET.js",
+            "title": "Get city distance",
+            "description": "Get distance to the given city",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getCityDistanceUsingGET.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "findCitiesNearCityUsingGET": {
+            "main": "./lib/actions/findCitiesNearCityUsingGET.js",
+            "title": "Find cities near city",
+            "description": "Find cities near the given origin city, filtering by optional criteria. If no criteria are set, you will get back all known cities.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/findCitiesNearCityUsingGET.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getCityTimeUsingGET": {
+            "main": "./lib/actions/getCityTimeUsingGET.js",
+            "title": "Get city time",
+            "description": "Get city time",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getCityTimeUsingGET.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getCountriesUsingGET": {
+            "main": "./lib/actions/getCountriesUsingGET.js",
+            "title": "Find countries",
+            "description": "Find countries, filtering by optional criteria. If no criteria are set, you will get back all known countries.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getCountriesUsingGET.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getCountryUsingGET": {
+            "main": "./lib/actions/getCountryUsingGET.js",
+            "title": "Get country details",
+            "description": "Get the details for a specific country, including number of regions.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getCountryUsingGET.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getRegionsUsingGET": {
+            "main": "./lib/actions/getRegionsUsingGET.js",
+            "title": "Find country regions",
+            "description": "Get all regions in a specific country. These could be states, provinces, districts, or otherwise major political divisions.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getRegionsUsingGET.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getRegionUsingGET": {
+            "main": "./lib/actions/getRegionUsingGET.js",
+            "title": "Get region details",
+            "description": "Get the details of a specific country region, including number of cities.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getRegionUsingGET.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "findRegionCitiesUsingGET": {
+            "main": "./lib/actions/findRegionCitiesUsingGET.js",
+            "title": "Find country region cities",
+            "description": "Get the cities in a specific country region. The country and region info is omitted in the response.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/findRegionCitiesUsingGET.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "findCitiesNearLocationUsingGET": {
+            "main": "./lib/actions/findCitiesNearLocationUsingGET.js",
+            "title": "Find cities near location",
+            "description": "Find cities near the given location, filtering by optional criteria. If no criteria are set, you will get back all known cities.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/findCitiesNearLocationUsingGET.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "findDivisionsNearLocationUsingGET": {
+            "main": "./lib/actions/findDivisionsNearLocationUsingGET.js",
+            "title": "Find divisions near location",
+            "description": "Find administrative divisions near the given location, filtering by optional criteria. If no criteria are set, you will get back all known divisions.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/findDivisionsNearLocationUsingGET.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getCurrenciesUsingGET": {
+            "main": "./lib/actions/getCurrenciesUsingGET.js",
+            "title": "Find currencies",
+            "description": "Find currencies, filtering by optional criteria. If no criteria are set, you will get back all known currencies.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getCurrenciesUsingGET.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getLanguagesUsingGET": {
+            "main": "./lib/actions/getLanguagesUsingGET.js",
+            "title": "Get languages",
+            "description": "Get all supported languages",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getLanguagesUsingGET.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getLocalesUsingGET": {
+            "main": "./lib/actions/getLocalesUsingGET.js",
+            "title": "Get locales",
+            "description": "Get all known locales",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getLocalesUsingGET.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getTimezonesUsingGET": {
+            "main": "./lib/actions/getTimezonesUsingGET.js",
+            "title": "Get time-zones",
+            "description": "Get all known time-zones",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getTimezonesUsingGET.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getTimeZoneDateTimeUsingGET": {
+            "main": "./lib/actions/getTimeZoneDateTimeUsingGET.js",
+            "title": "Get time-zone date-time",
+            "description": "Get time-zone date-time",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getTimeZoneDateTimeUsingGET.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getTimeZoneTimeUsingGET": {
+            "main": "./lib/actions/getTimeZoneTimeUsingGET.js",
+            "title": "Get time-zone time",
+            "description": "Get time-zone time",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getTimeZoneTimeUsingGET.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}

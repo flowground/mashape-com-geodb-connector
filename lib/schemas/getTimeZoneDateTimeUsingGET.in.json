@@ -1,0 +1,9 @@
+{
+    "type": "object",
+    "properties": {
+        "zoneId": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

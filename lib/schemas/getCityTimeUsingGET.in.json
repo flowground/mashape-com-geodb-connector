@@ -1,0 +1,9 @@
+{
+    "type": "object",
+    "properties": {
+        "cityId": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}
